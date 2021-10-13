@@ -23,7 +23,8 @@
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "uuid": "^8.3.2",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.10.3",
+    "json-server": "^0.16.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1000.6",
