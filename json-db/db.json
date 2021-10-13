@@ -149,6 +149,36 @@
       "cost": 20400,
       "status": "pending",
       "date_added": "1634071362911"
+    },
+    {
+      "id": "f0f02f17-7aea-47f2-b88c-310087da63f0",
+      "order_id": 17129358,
+      "origin": "Lagos",
+      "destination": "Ogun",
+      "service_type": "dropoff",
+      "shiping_date": "",
+      "location": "LAgos",
+      "reciever": {
+        "name": "Olufunmi",
+        "email": "me@me.com",
+        "phone": "0000000000000",
+        "alt_phone": "000000000000",
+        "address": "Ibadan"
+      },
+      "length": 10,
+      "width": 10,
+      "height": 10,
+      "weight": 100,
+      "quantity": 2,
+      "express": "yes",
+      "insurance": "no",
+      "packaging": "yes",
+      "dim_weight": 0.4,
+      "act_weight": 200,
+      "charge_weight": 200,
+      "cost": 40400,
+      "status": "pending",
+      "date_added": "1634118557026"
     }
   ]
 }
