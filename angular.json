@@ -88,9 +88,34 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "assets/css/bootstrap.min.css",
+              "assets/css/bootstrap-select.min.css",
+              "assets/css/line-awesome.css",
+              "assets/css/owl.carousel.min.css",
+              "assets/css/owl.theme.default.min.css",
+              "assets/css/jquery.fancybox.min.css",
+              "assets/css/daterangepicker.css",
+              "assets/css/animate.min.css",
+              "assets/css/animated-headline.css",
+              "assets/css/jquery-ui.css",
+              "assets/css/flag-icon.min.css",
+              "assets/css/style.css"
             ],
-            "scripts": []
+            "scripts": [
+              "assets/js/jquery-3.4.1.min.js",
+              "assets/js/jquery-ui.js",
+              "assets/js/popper.min.js",
+              "assets/js/bootstrap.min.js",
+              "assets/js/bootstrap-select.min.js",
+              "assets/js/moment.min.js",
+              "assets/js/daterangepicker.js",
+              "assets/js/owl.carousel.min.js",
+              "assets/js/jquery.fancybox.min.js",
+              "assets/js/jquery.countTo.min.js",
+              "assets/js/animated-headline.js",
+              "assets/js/jquery.ripples-min.js",
+              "assets/js/main.js"
+            ]
           }
         },
         "lint": {

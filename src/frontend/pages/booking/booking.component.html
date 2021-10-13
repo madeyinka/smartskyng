@@ -1,0 +1,242 @@
+<!-- ================================
+    START BREADCRUMB AREA
+================================= -->
+<section class="breadcrumb-area bread-bg-6">
+  <div class="breadcrumb-wrap">
+      <div class="container">
+          <div class="row align-items-center">
+              <div class="col-lg-6">
+                  <div class="breadcrumb-content">
+                      <div class="section-heading">
+                          <h2 class="sec__title text-white">Cargo Booking</h2>
+                      </div>
+                  </div><!-- end breadcrumb-content -->
+              </div><!-- end col-lg-6 -->
+              <div class="col-lg-6">
+                  <div class="breadcrumb-list text-right">
+                      <ul class="list-items">
+                          <li><a href="index.html">Home</a></li>
+                          <li>Booking</li>
+                      </ul>
+                  </div><!-- end breadcrumb-list -->
+              </div><!-- end col-lg-6 -->
+          </div><!-- end row -->
+      </div><!-- end container -->
+  </div><!-- end breadcrumb-wrap -->
+  <div class="bread-svg-box">
+      <svg class="bread-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100 0 50 10 0 0 0 10 100 10"></polygon></svg>
+  </div><!-- end bread-svg -->
+</section><!-- end breadcrumb-area -->
+<!-- ================================
+  END BREADCRUMB AREA
+================================= -->
+
+<section class="listing-form section--padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <div class="listing-header pb-4">
+          <h3 class="title font-size-28 pb-2">All Informations are required.</h3>
+            <p class="font-size-14">See List of our drop off points <a href="add-hotel.html#" class="text-color">here.</a></p>
+            <!-- <p class="font-size-14"><a href="#" class="text-color">Read the complete Trizen policy for accommodations.</a></p> -->
+        </div>
+        <form [formGroup]="shippingForm" (ngSubmit)="onSubmit()">
+          <div class="form-box">
+            <div class="form-title-wrap">
+              <h3 class="title"><i class="la la-shipping-fast mr-2 text-gray"></i>Shipping Information</h3>
+            </div>
+            <div class="form-content contact-form-action">
+              <div class="row">
+                <div class="col-lg-4 responsive-column">
+                  <div class="input-box">
+                    <label for="origin" class="label-text">Origin</label>
+                    <div class="form-group">
+                      <span class="la la-plane form-icon"></span>
+                      <input class="form-control" type="text" formControlName="origin" placeholder="Origin Airport">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 responsive-column">
+                  <div class="input-box">
+                    <label for="destination" class="label-text">Destination</label>
+                    <div class="form-group">
+                      <span class="la la-plane form-icon"></span>
+                      <input class="form-control" type="text" formControlName="destination" placeholder="Destination Airport">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 responsive-column">
+                  <div class="input-box">
+                    <label for="shipment date" class="label-text">Shipping Date</label>
+                    <div class="form-group">
+                      <span class="la la-calendar form-icon"></span>
+                      <input class="date-range form-control" type="text" name="daterange-single" formControlName="shiping_date">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="input-box">
+                      <label class="label-text">Submission Type</label>
+                      <div class="form-group select-contain w-100">
+                        <select class="select-contain-select" formControlName="service_type">
+                          <option value="pickup">Pick Up</option>
+                          <option value="dropoff">Drop Off</option>
+                        </select>
+                      </div>
+                  </div>
+                </div><!-- end col-lg-4 -->
+                <div class="col-lg-8">
+                  <div class="input-box">
+                      <label class="label-text">Location</label>
+                      <div class="form-group">
+                          <span class="la la-map form-icon"></span>
+                          <input class="form-control" type="text" formControlName="location" placeholder="Location">
+                      </div>
+                  </div>
+                </div><!-- end col-lg-8 -->
+              </div>
+            </div>
+          </div>
+          <div class="form-box">
+            <div class="form-title-wrap">
+              <h3 class="title"><i class="la la-address-card mr-2 text-gray"></i>Reciever Information</h3>
+            </div>
+            <div class="form-content contact-form-action">
+              <div class="row" formGroupName="reciever">
+                <div class="col-lg-6 responsive-column">
+                  <div class="input-box">
+                    <label for="name" class="label-text">Fullname</label>
+                    <div class="form-group">
+                      <span class="la la-user form-icon"></span>
+                      <input class="form-control" type="text" formControlName="name" placeholder="Recipient Fullname">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 responsive-column">
+                  <div class="input-box">
+                    <label for="email" class="label-text">Email</label>
+                    <div class="form-group">
+                      <span class="la la-envelope form-icon"></span>
+                      <input class="form-control" type="email" formControlName="email" placeholder="Recipient Email Address">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 responsive-column">
+                  <div class="input-box">
+                    <label for="phone" class="label-text">Phone Number</label>
+                    <div class="form-group">
+                      <span class="la la-phone-alt form-icon"></span>
+                      <input class="form-control" type="text" formControlName="phone" placeholder="Recipient Phone Number">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 responsive-column">
+                  <div class="input-box">
+                    <label for="phone" class="label-text">Alt. Phone Number</label>
+                    <div class="form-group">
+                      <span class="la la-phone-alt form-icon"></span>
+                      <input class="form-control" type="text" formControlName="alt_phone" placeholder="Recipient Alternative Phone Number">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="input-box">
+                      <label class="label-text">Address</label>
+                      <div class="form-group">
+                          <span class="la la-map form-icon"></span>
+                          <input class="form-control" type="text" formControlName="address" placeholder="Recipient Address">
+                      </div>
+                  </div>
+                </div><!-- end col-lg-12 -->
+              </div>
+            </div>
+          </div>
+          <div class="form-box">
+            <div class="form-title-wrap">
+              <h3 class="title"><i class="la la-calculator mr-2 text-gray"></i>Cargo Measurements</h3>
+            </div>
+            <div class="form-content contact-form-action">
+              <div class="row">
+                <div class="col-lg-3">
+                  <div class="input-box mb-3">
+                    <label class="label-text">Quantity</label>
+                    <div class="form-group d-flex align-items-center">
+                      <input class="form-control pl-3" type="number" formControlName="quantity">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="input-box mb-3">
+                      <label class="label-text">Volume</label>
+                      <div class="form-group d-flex align-items-center">
+                          <input class="form-control pl-3" type="text" formControlName="length" placeholder="Length">
+                          <span class="px-2">x</span>
+                          <input class="form-control pl-3" type="text" formControlName="width" placeholder="Width">
+                          <span class="px-2">x</span>
+                          <input class="form-control pl-3" type="text" formControlName="height" placeholder="Height">
+                      </div>
+                  </div>
+                </div><!-- end col-lg-6 -->
+                <div class="col-lg-3">
+                  <div class="input-box mb-3">
+                    <label class="label-text">Weight</label>
+                    <div class="form-group d-flex align-items-center">
+                      <input class="form-control pl-3" type="text" formControlName="weight" placeholder="Weight">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 responsive-column">
+                  <div class="input-box">
+                      <label class="label-text">Extra Service</label>
+                      <div class="form-group">
+                          <div class="select-contain w-auto">
+                              <select class="select-contain-select" formControlName="express">
+                                  <option value="country-code">Express Delivery</option>
+                                  <option value="yes">Yes</option>
+                                  <option value="no">No</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                </div><!-- end col-lg-6 -->
+                <div class="col-lg-4 responsive-column">
+                  <div class="input-box">
+                      <label class="label-text">Extra Service</label>
+                      <div class="form-group">
+                          <div class="select-contain w-auto">
+                              <select class="select-contain-select" formControlName="insurance">
+                                  <option value="country-code">Insurance</option>
+                                  <option value="yes">Yes</option>
+                                  <option value="no">No</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                </div><!-- end col-lg-6 -->
+                <div class="col-lg-4 responsive-column">
+                  <div class="input-box">
+                      <label class="label-text">Extra Service</label>
+                      <div class="form-group">
+                          <div class="select-contain w-auto">
+                              <select class="select-contain-select" formControlName="packaging">
+                                  <option value="country-code">Packaging</option>
+                                  <option value="yes">Yes</option>
+                                  <option value="no">No</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                </div><!-- end col-lg-6 -->
+              </div>
+            </div>
+          </div>
+          <div class="submit-box">
+            <div class="btn-box pt-3">
+                <button type="submit" class="theme-btn">Submit Booking<i class="la la-arrow-right ml-1"></i></button>
+            </div>
+        </div><!-- end submit-box -->
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
