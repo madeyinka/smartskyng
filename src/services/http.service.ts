@@ -9,7 +9,8 @@ import { catchError } from 'rxjs/operators';
 
 export class HttpService {
 
-  private base_url = 'http://localhost:3000/'
+  private base_url = 'http://localhost:30001/smartsky/api/1.0/'
+  private state_url = './../assets/states.json'
 
   constructor(private http: HttpClient) { }
 
@@ -31,6 +32,18 @@ export class HttpService {
 
   public get(url:any): Observable<any>{
     return this.http.get<any>(this.base_url+url).pipe(catchError(this.handleError))
+  }
+
+  public getToken() {
+    return localStorage.getItem('token');
+  }
+
+  public getUser() {
+    return localStorage.getItem('id');
+  }
+
+  public get_states(): Observable<any> {
+    return this.http.get<any>(this.state_url).pipe(catchError(this.handleError))
   }
 
 }

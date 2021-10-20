@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+.error-message{
+  color: #e70a3e !important;
+  font-size: 0.875rem;
+  margin-top: 0;
+  /* margin-bottom: 2rem; */
+}
+.error{
+  border: 1px solid #e70a3e !important;
+}
