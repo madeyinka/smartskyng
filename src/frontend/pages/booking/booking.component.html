@@ -49,43 +49,54 @@
               <div class="row">
                 <div class="col-lg-4 responsive-column">
                   <div class="input-box">
-                    <label for="origin" class="label-text">Origin</label>
-                    <div class="form-group">
-                      <span class="la la-plane form-icon"></span>
-                      <input class="form-control" type="text" formControlName="origin" placeholder="Origin Airport">
-                    </div>
+                      <label class="label-text">Origin Airport</label>
+                      <div class="form-group select-contain w-100">
+                          <select class="select-container-select dropdown-toggle btn-select" formControlName="origin" [ngClass]="{'error': formErrors.airport}" (blur)="logFormErrors()">
+                              <option value="">Select Airport</option>
+                              <option *ngFor="let airport of airports" value="{{airport.label}}">{{airport.label}}</option>
+                          </select>
+                          <small class="error-message" *ngIf="formErrors.airport">
+                            {{formErrors.airport}}
+                          </small>
+                      </div>
                   </div>
-                </div>
+                </div><!-- end col-lg-6 -->
                 <div class="col-lg-4 responsive-column">
                   <div class="input-box">
-                    <label for="destination" class="label-text">Destination</label>
-                    <div class="form-group">
-                      <span class="la la-plane form-icon"></span>
-                      <input class="form-control" type="text" formControlName="destination" placeholder="Destination Airport">
-                    </div>
+                      <label class="label-text">Destination Airport</label>
+                      <div class="form-group select-contain w-100">
+                          <select class="select-container-select dropdown-toggle btn-select" formControlName="destination" [ngClass]="{'error': formErrors.airport}" (blur)="logFormErrors()">
+                              <option value="">Select Airport</option>
+                              <option *ngFor="let airport of airports" value="{{airport.label}}">{{airport.label}}</option>
+                          </select>
+                          <small class="error-message" *ngIf="formErrors.airport">
+                            {{formErrors.airport}}
+                          </small>
+                      </div>
                   </div>
-                </div>
+                </div><!-- end col-lg-6 -->
                 <div class="col-lg-4 responsive-column">
                   <div class="input-box">
                     <label for="shipment date" class="label-text">Shipping Date</label>
                     <div class="form-group">
                       <span class="la la-calendar form-icon"></span>
-                      <input class="date-range form-control" type="text" name="daterange-single" formControlName="shiping_date">
+                      <input class="date-range form-control" type="text" name="daterange-singl" placeholder="2017-06-08" formControlName="shiping_date">
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 responsive-column">
                   <div class="input-box">
-                      <label class="label-text">Submission Type</label>
+                      <label class="label-text">Service Type</label>
                       <div class="form-group select-contain w-100">
-                        <select class="select-contain-select" formControlName="service_type">
-                          <option value="pickup">Pick Up</option>
-                          <option value="dropoff">Drop Off</option>
-                        </select>
+                          <select class="select-container-select dropdown-toggle btn-select" (change)="onSelect($event.target.value)" formControlName="service_type" [ngClass]="{'error': formErrors.airport}" (blur)="logFormErrors()">
+                              <option value="">Select Service Type</option>
+                              <option value="dropoff">Drop Off</option>
+                              <option value="pickup">Pick Up</option>
+                          </select>
                       </div>
                   </div>
-                </div><!-- end col-lg-4 -->
-                <div class="col-lg-8">
+                </div><!-- end col-lg-6 -->
+                <div class="col-lg-8" *ngIf="show">
                   <div class="input-box">
                       <label class="label-text">Location</label>
                       <div class="form-group">
@@ -102,7 +113,7 @@
               <h3 class="title"><i class="la la-address-card mr-2 text-gray"></i>Reciever Information</h3>
             </div>
             <div class="form-content contact-form-action">
-              <div class="row" formGroupName="reciever">
+              <div class="row" formGroupName="receiver">
                 <div class="col-lg-6 responsive-column">
                   <div class="input-box">
                     <label for="name" class="label-text">Fullname</label>
@@ -187,43 +198,34 @@
                 </div>
                 <div class="col-lg-4 responsive-column">
                   <div class="input-box">
-                      <label class="label-text">Extra Service</label>
-                      <div class="form-group">
-                          <div class="select-contain w-auto">
-                              <select class="select-contain-select" formControlName="express">
-                                  <option value="country-code">Express Delivery</option>
-                                  <option value="yes">Yes</option>
-                                  <option value="no">No</option>
-                              </select>
-                          </div>
+                      <div class="form-group select-contain w-100">
+                          <select class="select-container-select dropdown-toggle btn-select" formControlName="express">
+                              <option value="">Express Delivery</option>
+                              <option value="Yes">Yes</option>
+                              <option value="no">No</option>
+                          </select>
                       </div>
                   </div>
                 </div><!-- end col-lg-6 -->
                 <div class="col-lg-4 responsive-column">
                   <div class="input-box">
-                      <label class="label-text">Extra Service</label>
-                      <div class="form-group">
-                          <div class="select-contain w-auto">
-                              <select class="select-contain-select" formControlName="insurance">
-                                  <option value="country-code">Insurance</option>
-                                  <option value="yes">Yes</option>
-                                  <option value="no">No</option>
-                              </select>
-                          </div>
+                      <div class="form-group select-contain w-100">
+                          <select class="select-container-select dropdown-toggle btn-select" formControlName="insurance">
+                              <option value="">Insurance</option>
+                              <option value="Yes">Yes</option>
+                              <option value="no">No</option>
+                          </select>
                       </div>
                   </div>
                 </div><!-- end col-lg-6 -->
                 <div class="col-lg-4 responsive-column">
                   <div class="input-box">
-                      <label class="label-text">Extra Service</label>
-                      <div class="form-group">
-                          <div class="select-contain w-auto">
-                              <select class="select-contain-select" formControlName="packaging">
-                                  <option value="country-code">Packaging</option>
-                                  <option value="yes">Yes</option>
-                                  <option value="no">No</option>
-                              </select>
-                          </div>
+                      <div class="form-group select-contain w-100">
+                          <select class="select-container-select dropdown-toggle btn-select" formControlName="packaging">
+                              <option value="">Packaging</option>
+                              <option value="Yes">Yes</option>
+                              <option value="no">No</option>
+                          </select>
                       </div>
                   </div>
                 </div><!-- end col-lg-6 -->
@@ -232,7 +234,7 @@
           </div>
           <div class="submit-box">
             <div class="btn-box pt-3">
-                <button type="submit" class="theme-btn">Submit Booking<i class="la la-arrow-right ml-1"></i></button>
+                <button type="submit" class="theme-btn">{{btn_msg}}<i class="la la-arrow-right ml-1"></i></button>
             </div>
         </div><!-- end submit-box -->
         </form>

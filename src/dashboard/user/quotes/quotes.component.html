@@ -5,16 +5,16 @@
               <div class="col-lg-6">
                   <div class="breadcrumb-content">
                       <div class="section-heading">
-                          <h2 class="sec__title font-size-30 text-white">My Booking</h2>
+                          <h2 class="sec__title font-size-30 text-white">My Quotes</h2>
                       </div>
                   </div><!-- end breadcrumb-content -->
               </div><!-- end col-lg-6 -->
               <div class="col-lg-6">
                   <div class="breadcrumb-list text-right">
                       <ul class="list-items">
-                          <li><a href="index.html" class="text-white">Home</a></li>
+                          <li><a href="main/index" class="text-white">Home</a></li>
                           <li>Dashboard</li>
-                          <li>Bookings</li>
+                          <li>Quotes</li>
                       </ul>
                   </div><!-- end breadcrumb-list -->
               </div><!-- end col-lg-6 -->
@@ -48,7 +48,7 @@
                                         <th scope="col">Action</th>
                                     </tr>
                                   </thead>
-                                  <tbody *ngIf="bookings != null">
+                                  <tbody>
                                     <tr *ngFor="let booking of bookings">
                                         <td scope="row">{{booking.uuid}}</td>
                                         <td>{{booking.origin}}</td>
@@ -62,7 +62,6 @@
                                         </td>
                                     </tr>
                                   </tbody>
-                                  <tbody *ngIf="bookings == null"><tr>No record to display</tr></tbody>
                               </table>
                           </div>
                       </div>

@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', data.response)
           this.http.get('auth/usercontext').subscribe((user) => {
             localStorage.setItem('id', user.response)
-            this.router.navigate(['account/user/booking'])
+            this.router.navigate(['user/bookings'])
           })
 
         } else {

@@ -14,6 +14,7 @@ export class SummaryComponent implements OnInit {
   booking:Booking
   quoteForm:FormGroup
   addedData:any
+  id:string
 
   constructor(
     private fb:FormBuilder,
@@ -25,9 +26,9 @@ export class SummaryComponent implements OnInit {
   ngOnInit() {
     this.formValidator()
     this._router.paramMap.subscribe(param => {
-      const id = param.get('id')
-      this.http.get('booking/'+id).subscribe(data => {
-        this.booking = data
+      this.id = param.get('id')
+      this.http.get('booking/by-identity?identity='+this.id).subscribe(data => {
+        this.booking = data.response
       })
     })
   }
@@ -38,9 +39,9 @@ export class SummaryComponent implements OnInit {
 
   formData(){
     return this.addedData = {
+      identity: this.id,
       item: this.f.item.value,
-      description: this.f.description.value,
-      status:"active"
+      description: this.f.description.value
     }
   }
 
@@ -52,12 +53,14 @@ export class SummaryComponent implements OnInit {
   }
 
   onSubmit(){
-    // this.http.post('booking/'+ this.f.item.value, this.formData()).subscribe(
-    //   (data) => {
-    //     console.log(data)
-    //     //this.router.navigate(['main/booking/order', data.id])
-    //   }
-    // )
+    this.http.post('utility/get-quote', this.formData()).subscribe(
+      (data) => {
+        if (data && !data.error) {
+          //redirect to user invoices
+          this.router.navigate(['user/invoices'])
+        }
+      }
+    )
   }
 
 }

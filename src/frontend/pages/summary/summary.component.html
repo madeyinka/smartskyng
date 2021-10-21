@@ -48,7 +48,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                          <tr>
                             <td scope="row">{{booking.quantity}}</td>
                             <td>{{booking.length}} x {{booking.width}} x {{booking.height}}</td>
                             <td>{{booking.weight}}</td>
@@ -85,10 +85,9 @@
                               </div>
                             </div><!-- end col-lg-6 -->
                           </div>
-                          <input type="hidden" value="{{booking.id}}" formControlName="id">
                           <div class="btn-box pb-4">
-                            <a href="main/booking/modify/{{booking.id}}" class="theme-btn border-0 text-white bg-7 mb-2 mr-2">Back to booking</a>
-                            <a href="#" class="theme-btn mb-2">Request a quote</a>
+                            <a href="main/booking/modify/{{booking._id}}" class="theme-btn border-0 text-white bg-7 mb-2 mr-2">Back to booking</a>
+                            <button type="submit" class="theme-btn mb-2">Request a quote</button>
                         </div>
                       </form>
                   </div><!-- end contact-form-action -->
@@ -117,10 +116,10 @@
               </div><!-- form-title-wrap -->
               <div class="form-content contact-form-action">
                 <ul class="list-items list-items-2">
-                  <li><span>Name:</span>{{booking.reciever.name}}</li>
-                  <li><span>Phone:</span>{{booking.reciever.phone}}</li>
-                  <li><span>Email:</span>{{booking.reciever.email}}</li>
-                  <li><span>Address:</span>{{booking.reciever.address}}</li>
+                  <li>Name: {{booking.receiver.name}}</li>
+                  <li>Phone: {{booking.receiver.phone}}</li>
+                  <li>Email: {{booking.receiver.email}}</li>
+                  <li>Address: {{booking.receiver.address}}</li>
                 </ul>
               </div>
             </div>
