@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 import {HttpService} from './../../../services/http.service'
 
 @Component({
@@ -11,7 +12,8 @@ export class DashNavComponent implements OnInit {
   user:any
 
   constructor(
-    private http:HttpService
+    private http:HttpService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -22,5 +24,9 @@ export class DashNavComponent implements OnInit {
       })
     }
   }
+//   public isRouteActive(route) {
+//     return this.router.isRouteActive(this.router.generate(route))
+// }
+
 
 }
