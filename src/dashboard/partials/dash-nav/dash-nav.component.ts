@@ -10,6 +10,7 @@ import {HttpService} from './../../../services/http.service'
 export class DashNavComponent implements OnInit {
 
   user:any
+  isActive:Boolean
 
   constructor(
     private http:HttpService,
@@ -23,6 +24,13 @@ export class DashNavComponent implements OnInit {
         this.user = data.response
       })
     }
+  }
+
+  logOut() {
+    localStorage.removeItem('token')
+    localStorage.removeItem('id')
+    this.isActive = false
+    this.router.navigate(['main/index'])
   }
 //   public isRouteActive(route) {
 //     return this.router.isRouteActive(this.router.generate(route))

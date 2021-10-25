@@ -46,4 +46,8 @@ export class HttpService {
     return this.http.get<any>(this.state_url).pipe(catchError(this.handleError))
   }
 
+  public removeToken() {
+    localStorage.removeItem('token')
+  }
+
 }
