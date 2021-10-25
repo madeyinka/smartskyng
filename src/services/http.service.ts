@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 
 export class HttpService {
 
-  private base_url = 'https://smart-sky.herokuapp.com/smartsky/api/1.0/'
+  private base_url = 'http://localhost:30001/smartsky/api/1.0/'
   private state_url = './../assets/states.json'
 
   constructor(private http: HttpClient) { }

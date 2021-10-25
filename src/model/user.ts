@@ -9,4 +9,5 @@ export interface User {
   organisation?:string;
   state:string;
   lga:string;
+  status?:string;
 }

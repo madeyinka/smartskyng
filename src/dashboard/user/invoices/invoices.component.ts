@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router'
 import { HttpService } from '../../../services/http.service'
+import { PaystackOptions } from 'angular4-paystack';
 
 @Component({
   selector: 'app-invoices',
@@ -10,11 +11,34 @@ import { HttpService } from '../../../services/http.service'
 export class InvoicesComponent implements OnInit {
 
   invoices:any
+  public title = 'My app';
+  public showEmbed = false;
+  options: PaystackOptions = {
+    amount: 50000,
+    email: 'user@mail.com',
+    ref: `${Math.ceil(Math.random() * 10e10)}`
+  };
 
   constructor(
     private router: Router,
     private http: HttpService
   ) { }
+
+
+
+  paymentInit() {
+    console.log('Payment initialized');
+  }
+
+  paymentDone(ref: any) {
+    this.title = 'Payment successfull';
+    console.log(this.title, ref);
+  }
+
+  paymentCancel() {
+    this.title = 'Payment failed';
+    console.log(this.title);
+  }
 
   ngOnInit() {
     this.getInvoices()

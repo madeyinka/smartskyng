@@ -177,10 +177,12 @@ export class BookingComponent implements OnInit {
   }
 
   calculateCost() {
-    const express = (this.f.express.value === 'yes') ? 200 : 0
-    const insurance = (this.f.insurance.value === 'yes') ? 200 : 0
-    const packaging = (this.f.packaging.value === 'yes') ? 200 : 0
-    const total = (this.chargable(this.dim_weight(), this.act_weight()) * 200) + express + insurance + packaging
+    const charge_weight = (this.chargable(this.dim_weight(), this.act_weight()) <= 20) ? 20 : this.chargable(this.dim_weight(), this.act_weight())
+    const ship_cost = ( charge_weight * 200)
+    const express = (this.f.express.value) ? ship_cost : 0
+    // const insurance = (this.f.insurance.value === 'yes') ? 200 : 0
+    // const packaging = (this.f.packaging.value === 'yes') ? 200 : 0
+    const total =  ship_cost + express
     return total
   }
 

@@ -41,9 +41,13 @@
                               </ul>
                           </nav>
                       </div><!-- end main-menu-content -->
-                      <div class="nav-btn">
+                      <div class="nav-btn" *ngIf="!isActive">
                         <a href="main/auth/login" class="theme-btn theme-btn-small mr-2">Login</a>
                         <a href="main/auth/register" class="theme-btn theme-btn-small theme-btn-transparent">Sign Up</a>
+                      </div>
+                      <div class="nav-btn" *ngIf="isActive">
+                        <a href="user/bookings" class="theme-btn theme-btn-small mr-2">My Account</a>
+                        <a href="#" (click)="logOut()" class="theme-btn-danger theme-btn-small">Log Out</a>
                       </div>
                       <!-- <div class="nav-btn">
                           <a href="become-local-expert.html" class="theme-btn">Become Local Expert</a>

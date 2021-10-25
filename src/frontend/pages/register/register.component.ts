@@ -78,7 +78,8 @@ export class RegisterComponent implements OnInit {
       organisation: this.f.organisation.value,
       state: this.f.state.value,
       lga: this.f.lga.value,
-      phone: this.f.phone.value
+      phone: this.f.phone.value,
+      status:"active"
     }
   }
 

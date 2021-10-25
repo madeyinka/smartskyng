@@ -57,7 +57,17 @@
                                       <td><span class="badge badge-warning text-white py-1 px-2">{{inv.status}}</span></td>
                                       <td>
                                           <div class="table-content">
-                                            <button class="theme-btn theme-btn-small">Pay Now</button>
+                                            <button
+                                            angular4-paystack
+                                            [paystackOptions]="options"
+                                            (paymentInit)="paymentInit()"
+                                            (onClose)="paymentCancel()"
+                                            (callback)="paymentDone($event)"
+                                            class="theme-btn theme-btn-small"
+                                          >
+                                            Pay Now
+                                          </button>
+                                                <!-- <button type="submit" class="theme-btn"> Pay Now</button> -->
                                           </div>
                                       </td>
                                   </tr>
