@@ -98,8 +98,13 @@
                           </div>
 
                           <div class="btn-box pt-3">
-                              <button class="theme-btn">Total Cost: NGN {{total}}</button>
+                              <button class="theme-btn mr-2">Total Cost: NGN {{total}}</button>
+                              <button class="theme-btn border-0 text-white bg-7" (click)="proceed()">Proceed</button>
                           </div>
+                          <div *ngIf="msg">
+                            <small class="error-message">{{msg}}</small>
+                          </div>
+
                       </div>
                   </div>
               </div><!-- end col-lg-5 -->
@@ -191,7 +196,7 @@
                       <img src="assets/images/img1.jpg" alt="" class="flip-img">
                       <a href="main/services" class="flip-content d-flex align-items-center justify-content-center">
                           <div>
-                            <h3 class="flip-title">For express shipment and delivery of lightweight parcels, packages and the likes.</h3>
+                            <h3 class="flip-title">Lightweight parcels, packages and the likes are in there own class but require express delivery at the shortest acceptance span. You can trust us with this; we will get it across secured.</h3>
                           </div>
                       </a><!-- end flip-content -->
                   </div><!-- end flip-box-back -->
@@ -212,7 +217,7 @@
                               <!-- <div class="icon-element mx-auto mb-3 bg-white text-color-2">
                                   <i class="la la-arrow-right"></i>
                               </div> -->
-                              <h3 class="flip-title">Sensitive cargoes that require special attention will be well taken care of.</h3>
+                              <h3 class="flip-title">Some shipments are special because they are Valuable, vulnerable, delicate, perishable or even breathing. They require special packaging and temperature control, just leave that to us; we will take good care of them and deliver safely.</h3>
                           </div>
                       </a><!-- end flip-content -->
                   </div><!-- end flip-box-back -->
@@ -233,7 +238,7 @@
                               <!-- <div class="icon-element mx-auto mb-3 bg-white text-color-2">
                                   <i class="la la-arrow-right"></i>
                               </div> -->
-                              <h3 class="flip-title">Smartsky express delivery service can be triggered when urgent need arises.</h3>
+                              <h3 class="flip-title">It is priority when speed and cost could not achieve a balance. When that shipment MUST go now, then our priority service will be triggered to ensure just that.</h3>
                           </div>
                       </a><!-- end flip-content -->
                   </div><!-- end flip-box-back -->
@@ -275,7 +280,7 @@
                               <!-- <div class="icon-element mx-auto mb-3 bg-white text-color-2">
                                   <i class="la la-arrow-right"></i>
                               </div> -->
-                              <h3 class="flip-title">Supporting the supply chain is paramount to our resolve to take the burden away from our clients and satisfy the Service Level Agreement(SLA) to the letter.</h3>
+                              <h3 class="flip-title">Be it e-commerce to manufacturing logistics support that requires speed, this service will provide technological support and the most reliable air connections down to your last mile customers.</h3>
                           </div>
                       </a><!-- end flip-content -->
                   </div><!-- end flip-box-back -->
@@ -297,7 +302,7 @@
                               <!-- <div class="icon-element mx-auto mb-3 bg-white text-color-2">
                                   <i class="la la-arrow-right"></i>
                               </div> -->
-                              <h3 class="flip-title">With our years of experience Custom Clearing & Delivery(CCD), we take the troubles off you and secure a shipment in adherence to regulations and delivers safely.</h3>
+                              <h3 class="flip-title">With our years of experience in Custom Clearing & Delivery (CCD), we take the troubles off you and secure a shipment in adherence to regulations and delivers safely.</h3>
                           </div>
                       </a><!-- end flip-content -->
                   </div><!-- end flip-box-back -->

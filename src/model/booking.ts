@@ -10,8 +10,8 @@ export interface Booking {
     name:string;
     email:string;
     phone: string;
-    address:string;
-    alt_phone?:string
+    service_type:string;
+    location?:string
   };
   length:number;
   width:number;

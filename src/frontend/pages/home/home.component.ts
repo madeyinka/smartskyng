@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { HttpService } from 'src/services/http.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-home',
@@ -13,14 +15,25 @@ export class HomeComponent implements OnInit {
   ship_cost:number=0
   charge_weight:number=0
   cost:number=200
+  msg:string
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http:HttpService,
+    private router:Router
   ) { }
 
   ngOnInit() {
     this.formValidator()
     this.calculator.valueChanges.subscribe(() => this.calculateCost())
+  }
+
+  proceed(){
+    if (!this.http.getUser()){
+      this.msg = "You must be logged in to proceed."
+    } else {
+      this.router.navigate(['user/booking/create'])
+    }
   }
 
   chargable_weight(dim_weight, act_weight) {

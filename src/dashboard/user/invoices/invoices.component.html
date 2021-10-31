@@ -40,35 +40,36 @@
                             <table class="table">
                                 <thead>
                                   <tr>
-                                      <th scope="col">Order ID</th>
+                                      <th scope="col">ID</th>
                                       <th scope="col">Issue Date</th>
                                       <th scope="col">Due Date</th>
                                       <th scope="col">Amount Due</th>
-                                      <th scope="col">status</th>
+                                      <th scope="col">Status</th>
                                       <th scope="col">Action</th>
                                   </tr>
                                 </thead>
                                 <tbody *ngIf="invoices != null">
                                   <tr *ngFor="let inv of invoices">
-                                      <td scope="row">{{inv.uuid}}</td>
+                                      <td scope="row">{{inv.quote_id}}</td>
                                       <td>{{inv.issue_date | date:'mediumDate'}}</td>
                                       <td>{{inv.due_date | date:'mediumDate'}}</td>
                                       <td>₦{{inv.amount}}</td>
-                                      <td><span class="badge badge-warning text-white py-1 px-2">{{inv.status}}</span></td>
+                                      <td *ngIf="inv.status == 'Unpaid'"><span class="badge badge-warning text-white py-1 px-2">{{inv.status}}</span></td>
+                                      <td *ngIf="inv.status == 'Paid'"><span class="badge badge-success text-white py-1 px-2">{{inv.status}}</span></td>
                                       <td>
-                                          <div class="table-content">
+                                        <div class="btn-box pt-3">
+                                          <a href="user/booking/checkout/{{inv._id}}" class="theme-btn theme-btn-small mr-2">Pay Now</a>
+                                       </div>
+                                          <!-- <div class="table-content">
                                             <button
                                             angular4-paystack
-                                            [paystackOptions]="options"
+                                            [paystackOptions]="{amount:inv.amount * 100, email:inv.email, ref:tRef, metadata:{user:inv.user,order_id:inv.quote_id,inv_id:inv.uuid}}"
                                             (paymentInit)="paymentInit()"
                                             (onClose)="paymentCancel()"
                                             (callback)="paymentDone($event)"
                                             class="theme-btn theme-btn-small"
-                                          >
-                                            Pay Now
-                                          </button>
-                                                <!-- <button type="submit" class="theme-btn"> Pay Now</button> -->
-                                          </div>
+                                          >Pay Now</button>
+                                          </div> -->
                                       </td>
                                   </tr>
                                 </tbody>

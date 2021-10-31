@@ -1,0 +1,133 @@
+<div class="dashboard-content-wrap">
+  <div class="dashboard-bread dashboard--bread">
+      <div class="container-fluid">
+          <div class="row align-items-center">
+              <div class="col-lg-6">
+                  <div class="breadcrumb-content">
+                      <div class="section-heading">
+                          <h2 class="sec__title font-size-30 text-white">Booking</h2>
+                      </div>
+                  </div><!-- end breadcrumb-content -->
+              </div><!-- end col-lg-6 -->
+              <div class="col-lg-6">
+                  <div class="breadcrumb-list text-right">
+                      <ul class="list-items">
+                          <li><a href="index.html" class="text-white">Home</a></li>
+                          <li>Bookings</li>
+                          <li>Summary</li>
+                      </ul>
+                  </div><!-- end breadcrumb-list -->
+              </div><!-- end col-lg-6 -->
+          </div><!-- end row -->
+      </div>
+  </div><!-- end dashboard-bread -->
+  <div class="dashboard-main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-box traveler-form border-0">
+            <div class="form-title-wrap">
+              <h3 class="title">Booking Summary</h3>
+            </div>
+            <div class="form-content">
+              <div class="row">
+                <div class="col-lg-7">
+                  <div class="form-box">
+                    <div class="form-title-wrap">
+                      <h3 class="title">Items List</h3>
+                  </div>
+                  <div class="form-content">
+                      <div class="table-form table-responsive">
+                          <table class="table">
+                              <thead>
+                              <tr>
+                                  <th scope="col">Qty</th>
+                                  <th scope="col">Dimension (L,W,H)</th>
+                                  <th scope="col">Weight</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td scope="row">{{booking.quantity}}</td>
+                                  <td>{{booking.length}} x {{booking.width}} x {{booking.height}}</td>
+                                  <td>{{booking.weight}}</td>
+                              </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="form-box">
+                    <div class="form-title-wrap">
+                        <h3 class="title">Additional Information</h3>
+                    </div><!-- form-title-wrap -->
+                    <div class="form-content ">
+                        <div class="contact-form-action">
+                            <form [formGroup]="quoteForm" (ngSubmit)="onSubmit()">
+                                <div class="row">
+                                  <div class="col-lg-12 responsive-column">
+                                    <div class="input-box">
+                                        <label class="label-text">Items List (separate items with commas)</label>
+                                        <div class="form-group">
+                                            <!-- <span class="la la-user form-icon"></span> -->
+                                            <input class="form-control" type="text" name="text" formControlName="item" placeholder="Example: sawdust, ribbons">
+                                        </div>
+                                    </div>
+                                </div><!-- end col-lg-6 -->
+                                <div class="col-lg-12 responsive-column">
+                                    <div class="input-box">
+                                        <label class="label-text">Additional Note</label>
+                                        <div class="form-group">
+                                          <span class="la la-comment form-icon"></span>
+                                          <textarea class="message-control form-control" name="message" formControlName="description"  placeholder="Add additional notes here..."></textarea>
+                                      </div>
+                                    </div>
+                                  </div><!-- end col-lg-6 -->
+                                </div>
+                                <div class="btn-box pb-4">
+                                  <a href="user/booking/modify/{{booking._id}}" class="theme-btn mb-2 mr-2">Back to booking</a>
+                                  <button type="submit" class="theme-btn border-0 text-white bg-7 mb-2">Request Quote</button>
+                              </div>
+                            </form>
+                        </div><!-- end contact-form-action -->
+                    </div><!-- end form-content -->
+                  </div><!-- end form-box -->
+                </div><!-- end col-lg-8 -->
+                <div class="col-lg-5">
+                  <div class="form-box">
+                    <div class="form-title-wrap">
+                      <h3 class="title"><i class="la la-shipping-fast mr-2 text-gray"></i>Shipping Information</h3>
+                    </div><!-- form-title-wrap -->
+                    <div class="form-content contact-form-action">
+                      <ul class="list-items list-items-2">
+                        <li>Origin: {{booking.origin}}</li>
+                        <li>Destination: {{booking.destination}}</li>
+                        <li>Shipping Date: {{booking.shiping_date | date: 'mediumDate'}}</li>
+                        <li>Actual Weight: {{booking.act_weight}} cm/kgs</li>
+                        <li>Dim Weight: {{booking.dim_weight}} cm/kgs</li>
+                      </ul>
+                    </div>
+
+                  </div>
+                  <div class="form-box">
+                    <div class="form-title-wrap">
+                      <h3 class="title"><i class="la la-address-card mr-2 text-gray"></i>Recipient Information</h3>
+                    </div><!-- form-title-wrap -->
+                    <div class="form-content contact-form-action">
+                      <ul class="list-items list-items-2">
+                        <li>Name: {{booking.receiver.name}}</li>
+                        <li>Phone: {{booking.receiver.phone}}</li>
+                        <li>Email: {{booking.receiver.email}}</li>
+                        <li>Address: {{booking.receiver.location}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div><!-- end col-lg-4 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

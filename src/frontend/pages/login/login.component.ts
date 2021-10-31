@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.formValidator()
+    this.error
   }
 
   //error checker
@@ -79,9 +80,9 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', data.response)
           this.http.get('auth/usercontext').subscribe((user) => {
             localStorage.setItem('id', user.response)
-            this.router.navigate(['user/bookings'])
           })
 
+          this.router.navigate(['user/bookings'])
         } else {
           this.error = data.error
           this.msg = data.message
@@ -90,6 +91,9 @@ export class LoginComponent implements OnInit {
       },
       (err) => {console.log(err)}
     )
+  }
+  redirect(){
+    this.router.navigate(['main/index'])
   }
 
 }

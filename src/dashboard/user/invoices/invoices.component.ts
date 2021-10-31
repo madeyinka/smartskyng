@@ -11,13 +11,9 @@ import { PaystackOptions } from 'angular4-paystack';
 export class InvoicesComponent implements OnInit {
 
   invoices:any
-  public title = 'My app';
-  public showEmbed = false;
-  options: PaystackOptions = {
-    amount: 50000,
-    email: 'user@mail.com',
-    ref: `${Math.ceil(Math.random() * 10e10)}`
-  };
+  title:string
+  options: PaystackOptions
+  tRef=''
 
   constructor(
     private router: Router,
@@ -40,7 +36,12 @@ export class InvoicesComponent implements OnInit {
     console.log(this.title);
   }
 
+  setRandomPaymentRef() {
+    this.tRef = `${Math.random() * 10000000000000}`;
+  }
+
   ngOnInit() {
+    this.setRandomPaymentRef();
     this.getInvoices()
   }
 
@@ -56,13 +57,16 @@ export class InvoicesComponent implements OnInit {
               this.invoices = null
             }
           }else{
-            this.router.navigate(['main/auth/login'])
+            this.router.navigate(['main/index'])
           }
         }, (err) => {
-          this.router.navigate(['main/auth/login'])
+          this.router.navigate(['main/index'])
         }
       )
     }
   }
 
 }
+// amount: 50000,
+//     email: 'user@mail.com',
+//     ref: `${Math.ceil(Math.random() * 10e10)}`

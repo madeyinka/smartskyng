@@ -1,0 +1,90 @@
+<div class="contact-form-action">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="input-box">
+          <div class="form-group">
+              <span class="la la-user form-icon"></span>
+              <input class="form-control" type="text" formControlName="name" placeholder="Name" [ngClass]="{'error': formErrors.name}" (blur)="logFormErrors()">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="input-box">
+          <div class="form-group">
+              <span class="la la-envelope form-icon"></span>
+              <input class="form-control" type="email" formControlName="email" placeholder="Email Address" [ngClass]="{'error': formErrors.email}" (blur)="logFormErrors()">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="input-box">
+          <div class="form-group">
+              <span class="la la-phone-alt form-icon"></span>
+              <input class="form-control" type="text" formControlName="phone" placeholder="Phone Number" [ngClass]="{'error': formErrors.phone}" (blur)="logFormErrors()">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-box">
+          <div class="form-group">
+              <span class="la la-lock form-icon"></span>
+              <input class="form-control" type="password" formControlName="password" placeholder="Password (atleast 6 characters)" [ngClass]="{'error': formErrors.password}" (blur)="logFormErrors()">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-box">
+          <div class="form-group">
+              <span class="la la-lock form-icon"></span>
+              <input class="form-control" type="password" formControlName="c_password" placeholder="Confirm Password" [ngClass]="{'error': formErrors.c_password}" (blur)="logFormErrors()">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="input-box">
+          <div class="form-group">
+              <span class="la la-map-marked-alt form-icon"></span>
+              <input class="form-control" type="text" formControlName="address" placeholder="Example: 8, Wilmer Street. Ijegun" [ngClass]="{'error': formErrors.address}" (blur)="logFormErrors()">
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 responsive-column">
+        <div class="input-box">
+            <div class="form-group select-contain w-100">
+                <select class="select-container-select dropdown-toggle btn-select" (change)="onSelect($event.target.value)" [ngClass]="{'error': formErrors.state}" formControlName="state" (blur)="logFormErrors()">
+                    <option value="">Select State</option>
+                    <option *ngFor="let state of states" value="{{state.alias}}">{{state.state}}</option>
+                </select>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-6 responsive-column">
+        <div class="input-box">
+            <div class="form-group select-contain w-100">
+                <select class="select-container-select dropdown-toggle btn-select" formControlName="lga" [ngClass]="{'error': formErrors.lga}" (blur)="logFormErrors()">
+                    <option value="">Select LGA</option>
+                    <option *ngFor="let lga of lgas" value="{{lga}}">{{lga}}</option>
+                </select>
+            </div>
+        </div>
+      </div><!-- end col-lg-6 -->
+    </div><!--End Row-->
+    <div class="btn-box pt-3 pb-4">
+      <button type="submit" class="theme-btn w-100">{{btn_msg}}</button>
+    </div>
+  </form>
+</div><!-- end contact-form-action -->
+<div *ngIf="!error" class="alert alert-success alert-dismissible fade" [ngClass]="{'show': msg}" role="alert" >
+  <i class="la la-check mr-2"></i>{{msg}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div *ngIf="error" class="alert alert-danger alert-dismissible fade" [ngClass]="{'show': msg}" role="alert">
+  <i class="la la-times mr-2"></i>{{msg}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>

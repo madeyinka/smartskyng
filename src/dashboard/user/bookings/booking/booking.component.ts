@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router'
-import {Booking} from './../../../model/booking'
-import {HttpService}from './../../../services/http.service'
-import { validationMessages } from './../../../utilities'
+import {Booking} from './../../../../model/booking'
+import {HttpService}from './../../../../services/http.service'
+import { validationMessages } from './../../../../utilities'
 
 @Component({
   selector: 'app-booking',
@@ -12,18 +12,17 @@ import { validationMessages } from './../../../utilities'
 })
 export class BookingComponent implements OnInit {
 
-  shippingForm:FormGroup
-  booking:any
-  formErrors:any = {};
+  shipingForm:FormGroup
+  booking:Booking
   airports: any
-  id: string
+  id:string
+  formErrors:any = {}
   btn_msg:string
-  show:boolean = false
 
   constructor(
-    private fb:FormBuilder,
-    private http:HttpService,
-    private router: Router,
+    private fb: FormBuilder,
+    private http: HttpService,
+    private router:Router,
     private _router: ActivatedRoute
   ) { }
 
@@ -34,30 +33,9 @@ export class BookingComponent implements OnInit {
       if (this.id) {
         this.btn_msg = 'Modify Booking'
         this.getBooking(this.id)
-      }else {
+      }else{
         this.btn_msg = 'Submit Booking'
-        this.booking = {
-          origin:'',
-          destination:'',
-          shiping_date:'',
-          service_type:'',
-          location:'',
-          receiver: {
-            name:'',
-            email:'',
-            phone:'',
-            alt_phone:'',
-            address:''
-          },
-          length:null,
-          width:null,
-          height:null,
-          weight:null,
-          quantity:null,
-          express:'',
-          insurance:'',
-          packaging:''
-        }
+        this.resetForm()
       }
     })
     this.http.get('airport/pull').subscribe(
@@ -67,7 +45,7 @@ export class BookingComponent implements OnInit {
     )
   }
 
-  logFormErrors(group: FormGroup = this.shippingForm): void {
+  logFormErrors(group: FormGroup = this.shipingForm): void {
     Object.keys(group.controls).forEach((key: string) => {
       const abstractControl = group.get(key);
       if (abstractControl instanceof FormGroup) {
@@ -87,10 +65,29 @@ export class BookingComponent implements OnInit {
     });
   }
 
-  onSelect(type) {
-    if (type === 'pickup') {
-      this.show = true
-    }else{this.show = false}
+  resetForm(){
+    return this.booking = {
+      origin:'',
+      destination:'',
+      shiping_date:'',
+      service_type:'',
+      location:'',
+      receiver: {
+        name:'',
+        email:'',
+        phone:'',
+        service_type:'',
+        location:''
+      },
+      length:null,
+      width:null,
+      height:null,
+      weight:null,
+      quantity:null,
+      express:'',
+      insurance:'',
+      packaging:''
+    }
   }
 
   getBooking(id:string) {
@@ -100,8 +97,8 @@ export class BookingComponent implements OnInit {
     })
   }
 
-  editBooking(data:any) {
-    this.shippingForm.patchValue({
+  editBooking(data:Booking) {
+    this.shipingForm.patchValue({
       origin:data.origin,
       destination:data.destination,
       shiping_date:data.shiping_date,
@@ -137,22 +134,12 @@ export class BookingComponent implements OnInit {
     this.booking.packaging = this.f.packaging.value
   }
 
-  recipientGroup(){
-    return this.fb.group({
-      name:['', Validators.required],
-      email:['', Validators.required],
-      phone:['', Validators.required],
-      alt_phone:[''],
-      address:['', Validators.required]
-    })
-  }
-
   get f () {
-    return this.shippingForm.controls;
+    return this.shipingForm.controls;
   }
 
   get r () {
-    return this.shippingForm.get('receiver') as FormGroup
+    return this.shipingForm.get('receiver') as FormGroup
   }
 
   dim_weight() {
@@ -186,23 +173,22 @@ export class BookingComponent implements OnInit {
     return total
   }
 
-  bookingData() {
+  bookingData(){
     return this.booking = {
-      // id: uuidv4(),
       origin: this.f.origin.value,
       destination: this.f.destination.value,
       service_type: this.f.service_type.value,
       shiping_date: this.f.shiping_date.value,
       location: this.f.location.value,
       receiver: this.r.value,
-      length:Number(this.f.length.value),
-      width:Number(this.f.width.value),
-      height:Number(this.f.height.value),
-      weight:Number(this.f.weight.value),
-      quantity:Number(this.f.quantity.value),
-      express:this.f.express.value,
-      insurance:this.f.insurance.value,
-      packaging:this.f.packaging.value,
+      quantity: this.f.quantity.value,
+      length: this.f.length.value,
+      width: this.f.width.value,
+      height: this.f.height.value,
+      weight: this.f.weight.value,
+      express: this.f.express.value,
+      insurance: this.f.insurance.value,
+      packaging: this.f.packaging.value,
       dim_weight:this.dim_weight(),
       act_weight:this.act_weight(),
       charge_weight:this.chargable(this.dim_weight(), this.act_weight()),
@@ -212,32 +198,42 @@ export class BookingComponent implements OnInit {
     }
   }
 
-  formValidator(){
-    this.shippingForm = this.fb.group({
-      origin:['', Validators.required],
-      destination:['', Validators.required],
-      shiping_date:['',Validators.required],
-      service_type:['', Validators.required],
-      location:['', Validators.required],
-      receiver:this.recipientGroup(),
+  receiverGroup(){
+    return this.fb.group({
+      name:[''],
+      email:[''],
+      phone:[''],
+      service_type:[{value:'Pick up', disabled:true}],
+      location:['']
+    })
+  }
+
+  formValidator() {
+    this.shipingForm = this.fb.group({
+      origin: [''],
+      destination:[''],
+      shiping_date:[''],
+      service_type:[{value:'Drop off', disabled:true}],
+      location:[''],
+      receiver:this.receiverGroup(),
+      quantity:[1, [Validators.required, Validators.pattern("^[0-9]*$")]],
       length:['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       width:['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       height:['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       weight:['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      quantity:[1, [Validators.required, Validators.pattern("^[0-9]*$")]],
       express:[''],
       insurance:[''],
       packaging:['']
     })
   }
 
-  onSubmit(){
+  onSubmit() {
     this.mapFormValues()
     if (this.booking.identity) {
       this.http.post('booking/modify', this.booking).subscribe(
         (data) => {
           if (data && !data.error ) {
-            this.router.navigate(['main/booking/summary', data.response._id])
+            this.router.navigate(['user/booking/summary', data.response._id])
           }
         }
       )
@@ -245,10 +241,8 @@ export class BookingComponent implements OnInit {
       this.http.post('booking/create', this.bookingData()).subscribe(
         (data) => {
           if (data && !data.error) {
-            this.router.navigate(['main/booking/summary', data.response._id])
+            this.router.navigate(['user/booking/summary', data.response._id])
           }
-        }, (err) => {
-          this.router.navigate(['main/auth/login'])
         }
       )
     }

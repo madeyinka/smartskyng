@@ -1,166 +1,50 @@
-<!-- ================================
-    START CONTACT AREA
-================================= -->
-<section class="contact-area padding-top-100px padding-bottom-70px">
-  <div class="container">
-      <div class="row">
-          <div class="col-lg-7 mx-auto">
-              <div class="form-box">
-                  <div class="form-title-wrap">
-                      <h3 class="title">Register New User</h3>
-                      <p class="font-size-15 pt-2">Have an account already? you can sign in
-                          <a href="main/auth/login" class="text-color">here</a>
-                      </p>
-                  </div><!-- form-title-wrap -->
-                  <div class="form-content ">
-                      <div class="contact-form-action">
-                          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <div class="input-box">
-                                    <label class="label-text">Firstname</label>
-                                    <div class="form-group">
-                                        <span class="la la-user form-icon"></span>
-                                        <input class="form-control" type="text" formControlName="firstname" [ngClass]="{'error': formErrors.firstname}" (blur)="logFormErrors()" placeholder="User Firstname">
-                                        <small class="error-message" *ngIf="formErrors.firstname">
-                                          {{ formErrors.firstname }}
-                                        </small>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="input-box">
-                                    <label class="label-text">Lastname</label>
-                                    <div class="form-group">
-                                        <span class="la la-user form-icon"></span>
-                                        <input class="form-control" type="text" formControlName="lastname" placeholder="User Lastname" [ngClass]="{'error': formErrors.lastname}" (blur)="logFormErrors()">
-                                        <small class="error-message" *ngIf="formErrors.lastname">
-                                          {{ formErrors.lastname }}
-                                        </small>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="input-box">
-                                    <label class="label-text">Email</label>
-                                    <div class="form-group">
-                                        <span class="la la-envelope-o form-icon"></span>
-                                        <input class="form-control" type="email" formControlName="email" placeholder="Enter email address" [ngClass]="{'error': formErrors.email}" (blur)="logFormErrors()">
-                                        <small class="error-message" *ngIf="formErrors.email">
-                                          {{ formErrors.email }}
-                                        </small>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="input-box">
-                                    <label class="label-text">Phone</label>
-                                    <div class="form-group">
-                                        <span class="la la-phone form-icon"></span>
-                                        <input class="form-control" type="text" formControlName="phone" [ngClass]="{'error': formErrors.phone}" (blur)="logFormErrors()" placeholder="+2348059301760">
-                                        <small class="error-message" *ngIf="formErrors.phone">
-                                          {{ formErrors.phone }}
-                                        </small>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="input-box">
-                                    <label class="label-text">Password</label>
-                                    <div class="form-group">
-                                        <span class="la la-key form-icon"></span>
-                                        <input class="form-control" type="password" formControlName="password" [ngClass]="{'error': formErrors.password}" (blur)="logFormErrors()" placeholder="Enter Password">
-                                        <small class="error-message" *ngIf="formErrors.password">
-                                          {{ formErrors.password }}
-                                        </small>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="input-box">
-                                    <label class="label-text">Confirm Password</label>
-                                    <div class="form-group">
-                                        <span class="la la-key form-icon"></span>
-                                        <input class="form-control" type="password" formControlName="c_password" [ngClass]="{'error': formErrors.c_password}" (blur)="logFormErrors()" placeholder="Confirm Password">
-                                        <small class="error-message" *ngIf="formErrors.c_password">
-                                          {{ formErrors.c_password }}
-                                        </small>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-12">
-                                  <div class="input-box">
-                                    <label class="label-text">Address</label>
-                                    <div class="form-group">
-                                        <span class="la la-map-marked form-icon"></span>
-                                        <input class="form-control" type="text" formControlName="address" [ngClass]="{'error': formErrors.address}" (blur)="logFormErrors()" placeholder="Suite number, intersection, plaza, square">
-                                        <small class="error-message" *ngIf="formErrors.address">
-                                          {{ formErrors.address }}
-                                        </small>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-12">
-                                  <div class="input-box">
-                                    <label class="label-text">Organisation</label>
-                                    <div class="form-group">
-                                        <span class="la la-industry form-icon"></span>
-                                        <input class="form-control" type="text" formControlName="organisation" placeholder="Organisation Name">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-lg-6 responsive-column">
-                                  <div class="input-box">
-                                      <label class="label-text">State</label>
-                                      <div class="form-group select-contain w-100">
-                                          <select class="select-container-select dropdown-toggle btn-select" (change)="onSelect($event.target.value)" [ngClass]="{'error': formErrors.state}" (blur)="logFormErrors()" formControlName="state">
-                                              <option value="">Select State</option>
-                                              <option *ngFor="let state of states" value="{{state.alias}}">{{state.state}}</option>
-                                          </select>
-                                          <small class="error-message" *ngIf="formErrors.state">
-                                            {{ formErrors.state }}
-                                          </small>
-                                      </div>
-                                  </div>
-                                </div><!-- end col-lg-6 -->
-                                <div class="col-lg-6 responsive-column">
-                                  <div class="input-box">
-                                      <label class="label-text">LGA</label>
-                                      <div class="form-group select-contain w-100">
-                                          <select class="select-container-select dropdown-toggle btn-select" formControlName="lga" [ngClass]="{'error': formErrors.lga}" (blur)="logFormErrors()">
-                                              <option value="">Select LGA</option>
-                                              <option *ngFor="let lga of lgas" value="{{lga}}">{{lga}}</option>
-                                          </select>
-                                          <small class="error-message" *ngIf="formErrors.lga">
-                                            {{ formErrors.lga }}
-                                          </small>
-                                      </div>
-                                  </div>
-                                </div><!-- end col-lg-6 -->
-                              </div>
-                              <div class="btn-box">
-                                  <button type="submit" class="theme-btn">{{btn_msg}}</button>
-                              </div>
-                          </form>
-                          <div class="alert alert-success alert-dismissible fade" [ngClass]="{'show': msg}" role="alert" *ngIf="!error">
-                            <i class="la la-check mr-2"></i>{{msg}}
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                              </button>
-                          </div>
-                          <div class="alert alert-danger alert-dismissible fade" [ngClass]="{'show': msg}" role="alert" *ngIf="error">
-                            <i class="la la-times mr-2"></i>{{msg}}
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                              </button>
-                          </div>
-                      </div><!-- end contact-form-action -->
-                  </div><!-- end form-content -->
-              </div><!-- end form-box -->
-          </div><!-- end col-lg-8 -->
-      </div><!-- end row -->
-  </div><!-- end container -->
-</section><!-- end contact-area -->
-<!-- ================================
-  END CONTACT AREA
-================================= -->
+<!-- end modal-shared -->
+<div class="modal-popup">
+  <div class="modal fade" id="signupPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <div>
+                      <h5 class="modal-title title" id="exampleModalLongTitle">Create New Account</h5>
+                      <p class="font-size-14">Select the account that applies to you.</p>
+                  </div>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true" class="la la-close"></span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                <div class="section-tab section-tab-3 pt-1 pb-4">
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#user" [ngClass]="{ 'active':type==='individual'}" data-toggle="tab"  role="tab" (click)="userType('individual')">
+                            Personal
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [ngClass]="{ 'active':type==='organisation'}" data-toggle="tab" href="#organisation" role="tab" (click)="userType('organisation')" >
+                            Company
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [ngClass]="{ 'active':type==='agent'}" data-toggle="tab" href="#agent" role="tab" (click)="userType('agent')" >
+                            Agent
+                        </a>
+                    </li>
+                  </ul>
+                </div><!--End Section Tab-->
+                <div class="tab-content margin-bottom-40px" id="myTabcontent">
+                  <div class="tab-pane fade" [ngClass]="{ 'active show':type==='individual'}" role="tabpanel" >
+                    <app-user></app-user>
+                  </div>
+                  <div class="tab-pane fade" [ngClass]="{ 'active show':type==='organisation'}" role="tabpanel" >
+                    <app-company></app-company>
+                  </div>
+                  <div class="tab-pane fade" [ngClass]="{ 'active show':type==='agent'}" role="tabpanel" >
+                    <app-agent></app-agent>
+                  </div>
+                </div><!--End Tab Content-->
+              </div>
+          </div>
+      </div>
+  </div>
+</div><!-- end modal-popup -->

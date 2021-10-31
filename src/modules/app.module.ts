@@ -21,6 +21,9 @@ import { HeaderComponent } from '../frontend/partials/header/header.component'
 import { FooterComponent } from '../frontend/partials/footer/footer.component'
 import { LoginComponent } from '../frontend/pages/login/login.component'
 import { RegisterComponent } from '../frontend/pages/register/register.component'
+import { UserComponent } from '../frontend/pages/register/user/user.component'
+import { CompanyComponent } from '../frontend/pages/register/company/company.component'
+import { AgentComponent } from '../frontend/pages/register/agent/agent.component'
 import { DashboardComponent } from '../dashboard/dashboard.component'
 import { DashHeaderComponent } from '../dashboard/partials/dash-header/dash-header.component'
 import { DashNavComponent } from '../dashboard/partials/dash-nav/dash-nav.component'
@@ -36,6 +39,9 @@ import { DashFooterComponent } from '../dashboard/partials/dash-footer/dash-foot
     FooterComponent,
     LoginComponent,
     RegisterComponent,
+    UserComponent,
+    CompanyComponent,
+    AgentComponent,
     DashboardComponent,
     DashHeaderComponent,
     DashNavComponent,

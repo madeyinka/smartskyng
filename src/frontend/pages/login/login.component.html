@@ -1,60 +1,74 @@
-<!-- ================================
-    START CONTACT AREA
-================================= -->
-<section class="contact-area padding-top-100px padding-bottom-70px">
-  <div class="container">
-      <div class="row">
-          <div class="col-lg-7 mx-auto">
-              <div class="form-box">
-                  <div class="form-title-wrap">
-                      <h3 class="title">Login Information</h3>
-                      <p class="font-size-15 pt-2">Don't Have an account? Create a new one
-                          <a href="main/auth/register" class="text-color">here</a>
-                      </p>
-                  </div><!-- form-title-wrap -->
-                  <div class="form-content ">
-                      <div class="contact-form-action">
-                          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                              <div class="input-box">
-                                  <label class="label-text">Email</label>
-                                  <div class="form-group">
-                                      <span class="la la-envelope-o form-icon"></span>
-                                      <input class="form-control" type="email" formControlName="email" placeholder="Enter email address" [ngClass]="{'error': formErrors.email}" (blur)="logFormErrors()">
-                                      <small class="error-message" *ngIf="formErrors.email">
-                                        {{ formErrors.email }}
-                                      </small>
-                                  </div>
+<!-- end modal-shared -->
+<div class="modal-popup">
+  <div class="modal fade" id="loginPopupForm" tabindex="-1" role="dialog"  aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <div>
+                      <h5 class="modal-title title" id="exampleModalLongTitle2">Login</h5>
+                      <!-- <p class="font-size-14">Hello! Welcome to your account</p> -->
+                  </div>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true" class="la la-close"></span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <div class="contact-form-action">
+                      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                          <div class="input-box">
+                              <label class="label-text">Email Address</label>
+                              <div class="form-group">
+                                  <span class="la la-user form-icon"></span>
+                                  <input class="form-control" type="email" formControlName="email" placeholder="Enter User Email" [ngClass]="{'error': formErrors.email}" (blur)="logFormErrors()">
+                                  <small class="error-message" *ngIf="formErrors.email">
+                                    {{ formErrors.email }}
+                                  </small>
                               </div>
-                              <div class="input-box">
-                                <label class="label-text">Password</label>
-                                <div class="form-group">
-                                    <span class="la la-key form-icon"></span>
-                                    <input class="form-control" type="password" name="password" formControlName="password" placeholder="Enter password" [ngClass]="{'error': formErrors.password}" (blur)="logFormErrors()">
-                                </div>
-                            </div>
-                              <div class="btn-box">
-                                  <button type="submit" class="theme-btn">{{btn_msg}}</button>
+                          </div><!-- end input-box -->
+                          <div class="input-box">
+                              <label class="label-text">Password</label>
+                              <div class="form-group mb-2">
+                                  <span class="la la-lock form-icon"></span>
+                                  <input class="form-control" type="password" formControlName="password" placeholder="Enter password" [ngClass]="{'error': formErrors.password}" (blur)="logFormErrors()">
                               </div>
-                              <div class="alert alert-success alert-dismissible fade" [ngClass]="{'show': msg}" role="alert" *ngIf="!error">
-                                <i class="la la-check mr-2"></i>{{msg}}
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                  </button>
+                              <div class="d-flex align-items-center justify-content-between">
+                                  <!-- <div class="custom-checkbox mb-0">
+                                      <input type="checkbox" id="rememberchb">
+                                      <label for="rememberchb">Remember me</label>
+                                  </div> -->
+                                  <p class="forgot-password">
+                                      <a href="#">Forgot Password?</a>
+                                  </p>
                               </div>
-                              <div class="alert alert-danger alert-dismissible fade" [ngClass]="{'show': msg}" role="alert" *ngIf="error">
-                                <i class="la la-times mr-2"></i>{{msg}}
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                  </button>
-                              </div>
-                          </form>
-                      </div><!-- end contact-form-action -->
-                  </div><!-- end form-content -->
-              </div><!-- end form-box -->
-          </div><!-- end col-lg-8 -->
-      </div><!-- end row -->
-  </div><!-- end container -->
-</section><!-- end contact-area -->
-<!-- ================================
-  END CONTACT AREA
-================================= -->
+                          </div><!-- end input-box -->
+                          <div class="btn-box pt-3 pb-4">
+                              <button type="submit" class="theme-btn w-100">{{btn_msg}}</button>
+                          </div>
+                          <!-- <div class="action-box text-center">
+                              <p class="font-size-14">Or Login Using</p>
+                              <ul class="social-profile py-3">
+                                  <li><a href="index.html#" class="bg-5 text-white"><i class="lab la-facebook-f"></i></a></li>
+                                  <li><a href="index.html#" class="bg-6 text-white"><i class="lab la-twitter"></i></a></li>
+                                  <li><a href="index.html#" class="bg-7 text-white"><i class="lab la-instagram"></i></a></li>
+                                  <li><a href="index.html#" class="bg-5 text-white"><i class="lab la-linkedin-in"></i></a></li>
+                              </ul>
+                          </div> -->
+                      </form>
+                  </div><!-- end contact-form-action -->
+                  <div *ngIf="!error" class="alert alert-success alert-dismissible fade" [ngClass]="{'show': msg}" role="alert" >
+                    <i class="la la-check mr-2"></i>{{msg}}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div *ngIf="error" class="alert alert-danger alert-dismissible fade" [ngClass]="{'show': msg}" role="alert">
+                    <i class="la la-times mr-2"></i>{{msg}}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div><!-- end modal-popup -->

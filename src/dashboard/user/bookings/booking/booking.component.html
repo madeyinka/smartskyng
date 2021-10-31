@@ -1,0 +1,234 @@
+<div class="dashboard-content-wrap">
+  <div class="dashboard-bread dashboard--bread">
+      <div class="container-fluid">
+          <div class="row align-items-center">
+              <div class="col-lg-6">
+                  <div class="breadcrumb-content">
+                      <div class="section-heading">
+                          <h2 class="sec__title font-size-30 text-white">Booking</h2>
+                      </div>
+                  </div><!-- end breadcrumb-content -->
+              </div><!-- end col-lg-6 -->
+              <div class="col-lg-6">
+                  <div class="breadcrumb-list text-right">
+                      <ul class="list-items">
+                          <li><a href="index.html" class="text-white">Home</a></li>
+                          <li>Bookings</li>
+                          <li>Create</li>
+                      </ul>
+                  </div><!-- end breadcrumb-list -->
+              </div><!-- end col-lg-6 -->
+          </div><!-- end row -->
+      </div>
+  </div><!-- end dashboard-bread -->
+  <div class="dashboard-main-content">
+    <div class="container-fluid">
+      <form [formGroup]="shipingForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-box traveler-form border-0">
+            <div class="form-title-wrap">
+              <h3 class="title">Create Booking</h3>
+            </div>
+            <div class="form-content">
+              <div class="form-title-wrap">
+                <h3 class="title"><i class="la la-shipping-fast mr-2 text-gray"></i>Shipping Information</h3>
+              </div><!-- form-title-wrap -->
+              <div class="form-content contact-form-action">
+                <div class="row">
+                  <div class="col-lg-4 responsive-column">
+                    <div class="input-box">
+                        <label class="label-text">Origin Airport</label>
+                        <div class="form-group select-contain w-100">
+                            <select class="select-container-select dropdown-toggle btn-select" formControlName="origin" [ngClass]="{'error': formErrors.origin}" (blur)="logFormErrors()">
+                                <option value="">Select Airport</option>
+                                <option *ngFor="let airport of airports" value="{{airport.label}}">{{airport.label}}</option>
+                            </select>
+                            <small class="error-message" *ngIf="formErrors.airport">
+                              {{formErrors.airport}}
+                            </small>
+                        </div>
+                    </div>
+                  </div><!-- end col-lg-6 -->
+                  <div class="col-lg-4 responsive-column">
+                    <div class="input-box">
+                        <label class="label-text">Destination Airport</label>
+                        <div class="form-group select-contain w-100">
+                            <select class="select-container-select dropdown-toggle btn-select" formControlName="destination" [ngClass]="{'error': formErrors.destination}" (blur)="logFormErrors()">
+                                <option value="">Select Airport</option>
+                                <option *ngFor="let airport of airports" value="{{airport.label}}">{{airport.label}}</option>
+                            </select>
+                            <small class="error-message" *ngIf="formErrors.airport">
+                              {{formErrors.airport}}
+                            </small>
+                        </div>
+                    </div>
+                  </div><!-- end col-lg-6 -->
+                  <div class="col-lg-4 responsive-column">
+                    <div class="input-box">
+                      <label for="shipment date" class="label-text">Shipping Date</label>
+                      <div class="form-group">
+                        <span class="la la-calendar form-icon"></span>
+                        <input class="date-range form-control" type="text" name="daterange-singl" placeholder="2017-06-08" formControlName="shiping_date">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 responsive-column">
+                    <div class="input-box">
+                      <label for="shipment date" class="label-text">Service Type</label>
+                      <div class="form-group">
+                        <span class="la la-list form-icon"></span>
+                        <input class="date-range form-control" type="text"  formControlName="service_type" value="Drop off">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8 responsive-column">
+                    <div class="input-box">
+                        <label class="label-text">Dropoff Location</label>
+                        <div class="form-group select-contain w-100">
+                            <select class="select-container-select dropdown-toggle btn-select" formControlName="location">
+                                <option value="Agidigbin">Agidingbin Dropoff/Pickup Center (Ikeja)</option>
+                                <option value="Oworonshoki">Oworonshoki Dropoff/Pickup Center (Gbagada)</option>
+                            </select>
+                        </div>
+                    </div>
+                  </div><!-- end col-lg-6 -->
+                </div><!-- end row -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-box">
+              <div class="form-content">
+                <div class="form-title-wrap">
+                  <h3 class="title"><i class="la la-address-card mr-2 text-gray"></i>Reciever Information</h3>
+                </div><!-- form-title-wrap -->
+                <div class="form-content contact-form-action">
+                  <div class="row" formGroupName="receiver">
+                    <div class="col-lg-4 responsive-column">
+                      <div class="input-box">
+                        <label for="name" class="label-text">Name</label>
+                        <div class="form-group">
+                          <span class="la la-user form-icon"></span>
+                          <input class="form-control" type="text" formControlName="name" placeholder="Reciever Name">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 responsive-column">
+                      <div class="input-box">
+                        <label for="email" class="label-text">Email</label>
+                        <div class="form-group">
+                          <span class="la la-envelope form-icon"></span>
+                          <input class="form-control" type="email" formControlName="email" placeholder="Reciever Email Address">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 responsive-column">
+                      <div class="input-box">
+                        <label for="phone" class="label-text">Phone Number</label>
+                        <div class="form-group">
+                          <span class="la la-phone-alt form-icon"></span>
+                          <input class="form-control" type="text" formControlName="phone" placeholder="Reciever Phone Number">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 responsive-column">
+                      <div class="input-box">
+                        <label for="shipment date" class="label-text">Service Type</label>
+                        <div class="form-group">
+                          <span class="la la-list form-icon"></span>
+                          <input class="form-control" type="text"  formControlName="service_type">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-8 responsive-column">
+                      <div class="input-box">
+                          <label class="label-text">Pickup Location</label>
+                          <div class="form-group select-contain w-100">
+                              <select class="select-container-select dropdown-toggle btn-select" formControlName="location">
+                                  <option value="Agidigbin">Agidingbin Dropoff/Pickup Center (Ikeja)</option>
+                                  <option value="Oworonshoki">Oworonshoki Dropoff/Pickup Center (Gbagada)</option>
+                              </select>
+                          </div>
+                      </div>
+                    </div><!-- end col-lg-6 -->
+                  </div><!-- end row -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-box">
+              <div class="form-content">
+                <div class="form-title-wrap">
+                  <h3 class="title"><i class="la la-calculator mr-2 text-gray"></i>Cargo Information</h3>
+                </div><!-- form-title-wrap -->
+                <div class="form-content contact-form-action">
+                  <div class="row">
+                    <div class="col-lg-2">
+                      <div class="input-box mb-3">
+                        <label class="label-text">Quantity</label>
+                        <div class="form-group d-flex align-items-center">
+                          <input class="form-control pl-3" type="number" formControlName="quantity">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="input-box mb-3">
+                          <label class="label-text">Volume</label>
+                          <div class="form-group d-flex align-items-center">
+                              <input class="form-control pl-3" type="text" formControlName="length" placeholder="Length">
+                              <span class="px-2">x</span>
+                              <input class="form-control pl-3" type="text" formControlName="width" placeholder="Width">
+                              <span class="px-2">x</span>
+                              <input class="form-control pl-3" type="text" formControlName="height" placeholder="Height">
+                          </div>
+                      </div>
+                    </div><!-- end col-lg-6 -->
+                    <div class="col-lg-2">
+                      <div class="input-box mb-3">
+                        <label class="label-text">Weight</label>
+                        <div class="form-group d-flex align-items-center">
+                          <input class="form-control pl-3" type="text" formControlName="weight" placeholder="Weight">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-2">
+                      <div class="input-box mb-3">
+                        <label class="label-text">Extras</label>
+                        <div class="form-groups d-flex align-items-center">
+                          <input type="checkbox" class="form-group mr-2 mt-2" formControlName="express" >
+                          <label for="Express Delivery">Express</label>
+                        </div>
+                        <div class="form-groups d-flex align-items-center">
+                          <input type="checkbox" class="form-group mr-2 mt-2" formControlName="insurance" >
+                          <label for="Express Delivery">Insurance</label>
+                        </div>
+                        <div class="form-groups d-flex align-items-center">
+                          <input type="checkbox" class="form-group mr-2 mt-2" formControlName="packaging" >
+                          <label for="Express Delivery">Packaging</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- end row -->
+                  <div class="submit-box">
+                    <div class="btn-box pt-3">
+                        <button type="submit" class="theme-btn">{{btn_msg}}<i class="la la-arrow-right ml-1"></i></button>
+                    </div>
+                </div><!-- end submit-box -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

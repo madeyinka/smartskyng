@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router'
-import { HttpService } from './../../../services/http.service'
-import { Booking } from './../../../model/booking'
+import { HttpService } from './../../../../services/http.service'
+import { Booking } from './../../../../model/booking'
 
 @Component({
   selector: 'app-summary',
@@ -11,16 +11,16 @@ import { Booking } from './../../../model/booking'
 })
 export class SummaryComponent implements OnInit {
 
-  booking:any
+  booking:Booking
   quoteForm:FormGroup
-  addedData:any
+  addData:any
   id:string
 
   constructor(
-    private fb:FormBuilder,
-    private http:HttpService,
+    private fb: FormBuilder,
+    private http: HttpService,
     private router:Router,
-    private _router:ActivatedRoute
+    private _router: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class SummaryComponent implements OnInit {
   }
 
   formData(){
-    return this.addedData = {
+    return this.addData = {
       identity: this.id,
       item: this.f.item.value,
       description: this.f.description.value
@@ -47,7 +47,7 @@ export class SummaryComponent implements OnInit {
 
   formValidator(){
     this.quoteForm = this.fb.group({
-      item:['', Validators.required],
+      item: [''],
       description:['']
     })
   }
@@ -56,9 +56,11 @@ export class SummaryComponent implements OnInit {
     this.http.post('utility/get-quote', this.formData()).subscribe(
       (data) => {
         if (data && !data.error) {
-          this.router.navigate(['user/booking/confirm'])
+          this.router.navigate(['user/booking/confirm', this.id])
+        } else {
+          console.log(data.message)
         }
-      }
+      }, (err) => console.log(err)
     )
   }
 
