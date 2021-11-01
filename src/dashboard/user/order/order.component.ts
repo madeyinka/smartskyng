@@ -3,34 +3,34 @@ import { Router} from '@angular/router'
 import { HttpService } from '../../../services/http.service'
 
 @Component({
-  selector: 'app-invoices',
-  templateUrl: './invoices.component.html',
-  styleUrls: ['./invoices.component.css']
+  selector: 'app-order',
+  templateUrl: './order.component.html',
+  styleUrls: ['./order.component.css']
 })
-export class InvoicesComponent implements OnInit {
+export class OrderComponent implements OnInit {
 
-  invoices:any
+  orders:any
 
   constructor(
-    private router: Router,
-    private http: HttpService
+    private http:HttpService,
+    private router:Router
   ) { }
 
-
   ngOnInit() {
-    this.getInvoices()
+    this.getOrders()
   }
 
-  getInvoices() {
+  getOrders() {
     const user = this.http.getUser()
     if (user) {
-      this.http.get('utility/get-invoices?user='+user).subscribe(
+      this.http.get('utility/get-orders?user='+user).subscribe(
         (data) => {
+          console.log(data)
           if (!data.error) {
             if (data.total > 0) {
-              this.invoices = data.response
+              this.orders = data.response
             } else{
-              this.invoices = null
+              this.orders = null
             }
           }else{
             this.router.navigate(['main/index'])
@@ -43,6 +43,3 @@ export class InvoicesComponent implements OnInit {
   }
 
 }
-// amount: 50000,
-//     email: 'user@mail.com',
-//     ref: `${Math.ceil(Math.random() * 10e10)}`

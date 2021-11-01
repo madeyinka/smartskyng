@@ -40,10 +40,10 @@
                               <table class="table">
                                   <thead>
                                     <tr>
-                                        <th scope="col">Order ID</th>
+                                        <th scope="col">ID</th>
                                         <th scope="col">Origin</th>
                                         <th scope="col">Destination</th>
-                                        <th scope="col">Shipment Date</th>
+                                        <th scope="col">Shiping Date</th>
                                         <th scope="col">Cost</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -51,8 +51,8 @@
                                   <tbody>
                                     <tr *ngFor="let booking of bookings">
                                         <td scope="row">{{booking.uuid}}</td>
-                                        <td>{{booking.origin}}</td>
-                                        <td>{{booking.destination}}</td>
+                                        <td>{{booking.origin | slice:0:20}}...</td>
+                                        <td>{{booking.destination | slice:0:20}}...</td>
                                         <td>{{booking.shiping_date | date:'mediumDate'}}</td>
                                         <td>₦{{booking.cost}}</td>
                                         <td>

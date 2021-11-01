@@ -27,24 +27,6 @@ export class PaymentComponent implements OnInit {
     private _router:ActivatedRoute
   ) { }
 
-  paymentInit() {
-    console.log('Payment initialized');
-  }
-
-  paymentDone(ref: any) {
-    this.title = 'Payment successfull';
-    console.log(this.title, ref);
-  }
-
-  paymentCancel() {
-    this.title = 'Payment failed';
-    console.log(this.title);
-  }
-
-  setRandomPaymentRef() {
-    this.tRef = `${Math.random() * 10000000000000}`;
-  }
-
   ngOnInit() {
     this.setRandomPaymentRef();
     this.formValidator()
@@ -56,6 +38,21 @@ export class PaymentComponent implements OnInit {
         )
       }
     })
+  }
+
+  paymentDone(ref: any) {
+    if (ref.status == "success" && ref.message == "Approved") {
+      const biil_info = {identity:this.id,status:"Paid",reference:ref.reference,trans:ref.trans,method:"card"}
+      this.http.post('utility/payment-feedback', biil_info).subscribe(
+        (data) => console.log(data)
+      )
+
+    } else
+      return
+  }
+
+  setRandomPaymentRef() {
+    this.tRef = `${Math.random() * 10000000000000}`;
   }
 
   method(type:string){
@@ -75,7 +72,8 @@ export class PaymentComponent implements OnInit {
   formData() {
     return this.payData = {
       identity: this.id,
-      method: this.payForm.controls.method.value
+      method: this.payForm.controls.method.value,
+      reference:this.setRandomPaymentRef()
     }
   }
 
