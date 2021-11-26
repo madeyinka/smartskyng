@@ -23,7 +23,7 @@ export class OrderComponent implements OnInit {
   getOrders() {
     const user = this.http.getUser()
     if (user) {
-      this.http.get('utility/get-orders?user='+user).subscribe(
+      this.http.get('utility/get-orders?sortby=createdAt&orderby=desc&user='+user).subscribe(
         (data) => {
           console.log(data)
           if (!data.error) {

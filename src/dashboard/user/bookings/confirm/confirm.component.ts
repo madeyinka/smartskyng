@@ -30,7 +30,7 @@ export class ConfirmComponent implements OnInit {
     this.http.get('booking/by-identity?identity='+id).subscribe(
       (data) => {
         if (!data.error && data.response != null){
-          this.http.get('utility/get-invoice?quote_id='+ data.response.uuid).subscribe(
+          this.http.get('utility/get-invoice?quote_id='+ data.response._id).subscribe(
             (inv) => {
               if (inv && !inv.error) {
                 this.invoice = inv.response

@@ -33,7 +33,7 @@ export class PaymentComponent implements OnInit {
     this._router.paramMap.subscribe(param => {
       this.id = param.get('id')
       if (this.id) {
-        this.http.get('utility/invoice-by-identity?identity='+this.id).subscribe(
+        this.http.get('invoice/by-identity?identity='+this.id).subscribe(
           (data) => this.inv = data.response
         )
       }
@@ -42,13 +42,11 @@ export class PaymentComponent implements OnInit {
 
   paymentDone(ref: any) {
     if (ref.status == "success" && ref.message == "Approved") {
-      const biil_info = {identity:this.id,status:"Paid",reference:ref.reference,trans:ref.trans,method:"card"}
-      this.http.post('utility/payment-feedback', biil_info).subscribe(
+      const biil_info = {identity:this.id,status:"Paid",reference:ref.reference,trans:ref.trans,method:"card",email:this.inv.email}//email
+      this.http.post('utility/generate-order', biil_info).subscribe(
         (data) => console.log(data)
       )
-
-    } else
-      return
+    }
   }
 
   setRandomPaymentRef() {
@@ -73,6 +71,8 @@ export class PaymentComponent implements OnInit {
     return this.payData = {
       identity: this.id,
       method: this.payForm.controls.method.value,
+      email:this.inv.email,
+      status:"Unpaid",
       reference:this.setRandomPaymentRef()
     }
   }
@@ -85,7 +85,11 @@ export class PaymentComponent implements OnInit {
 
   onSubmit(){
     this.http.post('utility/generate-order', this.formData()).subscribe(
-      (data) => console.log(data.message)
+      (data) => {
+        //if (data) {
+          this.router.navigate(['user/order/complete', this.inv.quote_id])
+       // }
+      }
     )
   }
 

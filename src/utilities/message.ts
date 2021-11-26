@@ -25,6 +25,9 @@ const validationMessages = {
   },
   'address': {
     'required': 'Address is required'
+  },
+  'item': {
+    'required': 'Field is required'
   }
 }
 

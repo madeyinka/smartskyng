@@ -4,10 +4,12 @@ import { BookingListComponent } from 'src/dashboard/user/bookings/booking-list/b
 import { BookingComponent } from 'src/dashboard/user/bookings/booking/booking.component';
 import { ConfirmComponent } from 'src/dashboard/user/bookings/confirm/confirm.component';
 import { SummaryComponent } from 'src/dashboard/user/bookings/summary/summary.component';
+import { CompleteComponent } from 'src/dashboard/user/complete/complete.component';
 import { InvoicesComponent } from 'src/dashboard/user/invoices/invoices.component';
 import { OrderComponent } from 'src/dashboard/user/order/order.component';
 import { PaymentComponent } from 'src/dashboard/user/payment/payment.component';
 import { QuotesComponent } from 'src/dashboard/user/quotes/quotes.component';
+import { ShipmentsComponent } from 'src/dashboard/user/shipments/shipments.component';
 
 const user_routes: Routes = [
   {path: 'bookings', component:BookingComponent},
@@ -20,7 +22,9 @@ const user_routes: Routes = [
   {path: 'booking/checkout/:id', component:PaymentComponent},
   {path: 'invoices', component:InvoicesComponent},
   {path: 'orders', component:OrderComponent},
-  {path: 'quotes', component:QuotesComponent}
+  {path: 'order/complete/:id', component:CompleteComponent},
+  {path: 'quotes', component:QuotesComponent},
+  {path: 'shipments', component:ShipmentsComponent}
 ]
 
 @NgModule({

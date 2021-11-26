@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     if (!this.http.getUser()){
       this.msg = "You must be logged in to proceed."
     } else {
-      this.router.navigate(['user/booking/create'])
+      this.msg = "Your total shipping cost is "
     }
   }
 

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminComponent } from 'src/dashboard/admin/admin.component';
 import { DashboardComponent } from 'src/dashboard/dashboard.component';
 import { MainComponent } from 'src/frontend/main.component';
 import { AboutComponent } from 'src/frontend/pages/about/about.component';
@@ -31,6 +32,16 @@ const routes: Routes = [
     children:[
       {path:'',
       loadChildren: () => import('./../modules/user.module').then(m => m.UserModule)}
+    ]
+  },
+  {
+    path:'admin',
+    component:AdminComponent,
+    children:[
+      {
+        path:'',
+        loadChildren: () => import('./../modules/admin.module').then(m => m.AdminModule)
+      }
     ]
   }
 ];

@@ -1,0 +1,72 @@
+<div class="dashboard-content-wrap">
+  <div class="dashboard-bread dashboard--bread dashboard-bread-2">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="breadcrumb-content">
+                    <div class="section-heading">
+                        <h2 class="sec__title font-size-30 text-white">Airport</h2>
+                    </div>
+                </div><!-- end breadcrumb-content -->
+            </div><!-- end col-lg-6 -->
+            <div class="col-lg-6">
+                <div class="breadcrumb-list text-right">
+                    <ul class="list-items">
+                        <li><a href="index.html" class="text-white">Home</a></li>
+                        <li>Airport</li>
+                        <li>Create</li>
+                    </ul>
+                </div><!-- end breadcrumb-list -->
+            </div><!-- end col-lg-6 -->
+        </div><!-- end row -->
+    </div>
+  </div><!-- end dashboard-bread -->
+  <div class="dashboard-main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-box">
+            <div class="form-content">
+              <div class="form-title-wrap">
+                <h3 class="title"><i class="la la-paper-plane mr-2 text-gray"></i>Add New Airport</h3>
+              </div><!-- form-title-wrap -->
+              <div class="form-content contact-form-action">
+                <form [formGroup]="airportForm" (ngSubmit)="onSubmit()">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="input-box">
+                        <label for="name" class="label-text">Airport Name</label>
+                        <div class="form-group">
+                          <input type="text" class="form-control" formControlName="label">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="input-box">
+                        <label for="name" class="label-text">IATA Code</label>
+                        <div class="form-group">
+                          <input type="text" class="form-control" formControlName="iata_code">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="input-box">
+                        <label for="name" class="label-text">ICAO Code</label>
+                        <div class="form-group">
+                          <input type="text" class="form-control" formControlName="icao_code">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="btn-box pt-3">
+                      <button type="submit" class="theme-btn">Submit<i class="la la-arrow-right ml-1"></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

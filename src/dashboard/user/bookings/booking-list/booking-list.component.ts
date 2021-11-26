@@ -24,7 +24,7 @@ export class BookingListComponent implements OnInit {
   getBooking(){
     const user = this.http.getUser()
     if (user) {
-      this.http.get('booking/pull?user='+user+'&status=pending').subscribe(
+      this.http.get('booking/pull?user='+user).subscribe(
         (data) => {
           if (!data.error) {
             if (data.total > 0) {

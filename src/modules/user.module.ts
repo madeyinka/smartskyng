@@ -8,6 +8,8 @@ import { QuotesComponent } from './../dashboard/user/quotes/quotes.component'
 import { InvoicesComponent } from './../dashboard/user/invoices/invoices.component'
 import { OrderComponent } from './../dashboard/user/order/order.component'
 import { PaymentComponent } from './../dashboard/user/payment/payment.component'
+import { ShipmentsComponent } from './../dashboard/user/shipments/shipments.component'
+import { CompleteComponent } from './../dashboard/user/complete/complete.component'
 import { DashboardModule } from './dashboard.module'
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { SharedModule } from './shared.module'
@@ -21,7 +23,9 @@ import { SharedModule } from './shared.module'
     QuotesComponent,
     InvoicesComponent,
     PaymentComponent,
-    OrderComponent
+    OrderComponent,
+    ShipmentsComponent,
+    CompleteComponent
   ],
   imports:[
     DashboardModule,

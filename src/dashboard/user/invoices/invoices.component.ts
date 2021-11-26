@@ -24,7 +24,7 @@ export class InvoicesComponent implements OnInit {
   getInvoices() {
     const user = this.http.getUser()
     if (user) {
-      this.http.get('utility/get-invoices?user='+user).subscribe(
+      this.http.get('invoice/all-invoices?user='+user).subscribe(
         (data) => {
           if (!data.error) {
             if (data.total > 0) {

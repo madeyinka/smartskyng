@@ -9,6 +9,7 @@ import { AppRoutingModule } from '../routes/app-routing.module';
 import { SharedModule } from './shared.module'
 import { MainModule } from './main.module'
 import { DashboardModule } from './dashboard.module'
+import { AdminModule } from './admin.module'
 
 //Services
 import { HttpService } from './../services/http.service'
@@ -28,11 +29,15 @@ import { DashboardComponent } from '../dashboard/dashboard.component'
 import { DashHeaderComponent } from '../dashboard/partials/dash-header/dash-header.component'
 import { DashNavComponent } from '../dashboard/partials/dash-nav/dash-nav.component'
 import { DashFooterComponent } from '../dashboard/partials/dash-footer/dash-footer.component'
-
+import { AdminComponent } from '../dashboard/admin/admin.component'
+import { AdminHeaderComponent } from '../dashboard/admin/partials/admin-header/admin-header.component'
+import { AdminNavComponent } from '../dashboard/admin/partials/admin-nav/admin-nav.component'
+import { AdminFooterComponent } from '../dashboard/admin/partials/admin-footer/admin-footer.component'
 
 
 @NgModule({
   declarations: [
+    AdminComponent,
     AppComponent,
     MainComponent,
     HeaderComponent,
@@ -45,7 +50,10 @@ import { DashFooterComponent } from '../dashboard/partials/dash-footer/dash-foot
     DashboardComponent,
     DashHeaderComponent,
     DashNavComponent,
-    DashFooterComponent
+    DashFooterComponent,
+    AdminHeaderComponent,
+    AdminNavComponent,
+    AdminFooterComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +63,8 @@ import { DashFooterComponent } from '../dashboard/partials/dash-footer/dash-foot
     AppRoutingModule,
     SharedModule,
     MainModule,
-    DashboardModule
+    DashboardModule,
+    AdminModule
   ],
   providers: [HttpService, {provide:HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true}],
   bootstrap: [AppComponent]

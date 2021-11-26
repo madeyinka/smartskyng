@@ -79,10 +79,15 @@ export class LoginComponent implements OnInit {
           this.btn_msg = 'Submit'
           localStorage.setItem('token', data.response)
           this.http.get('auth/usercontext').subscribe((user) => {
-            localStorage.setItem('id', user.response)
+            localStorage.setItem('id', user.response._id)
+            if (user.response.type != "admin") {
+              this.router.navigate(['user/bookings'])
+            } else {
+              this.router.navigate(['admin/dashboard'])
+            }
           })
 
-          this.router.navigate(['user/bookings'])
+
         } else {
           this.error = data.error
           this.msg = data.message

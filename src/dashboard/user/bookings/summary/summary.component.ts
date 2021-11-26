@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router'
 import { HttpService } from './../../../../services/http.service'
 import { Booking } from './../../../../model/booking'
+import { validationMessages } from './../../../../utilities'
 
 @Component({
   selector: 'app-summary',
@@ -15,6 +16,7 @@ export class SummaryComponent implements OnInit {
   quoteForm:FormGroup
   addData:any
   id:string
+  formErrors:any={}
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +33,27 @@ export class SummaryComponent implements OnInit {
         this.booking = data.response
       })
     })
+    this.quoteForm.valueChanges.subscribe(() => this.logFormErrors())
+  }
+
+  logFormErrors(group: FormGroup = this.quoteForm): void {
+    Object.keys(group.controls).forEach((key: string) => {
+      const abstractControl = group.get(key);
+      if (abstractControl instanceof FormGroup) {
+        this.logFormErrors(abstractControl)
+      }else {
+        this.formErrors[key] = '';
+        if (abstractControl && !abstractControl.valid
+         && (abstractControl.touched || abstractControl.dirty)) {
+             const messages = validationMessages[key];
+             for (const errorKey in abstractControl.errors) {
+               if (errorKey) {
+                 this.formErrors[key] += messages[errorKey] + ' ';
+               }
+            }
+          }
+      }
+    });
   }
 
   get f () {
@@ -47,13 +70,13 @@ export class SummaryComponent implements OnInit {
 
   formValidator(){
     this.quoteForm = this.fb.group({
-      item: [''],
+      item: ['', Validators.required],
       description:['']
     })
   }
 
   onSubmit(){
-    this.http.post('utility/get-quote', this.formData()).subscribe(
+    this.http.post('invoice/generate-invoice', this.formData()).subscribe(
       (data) => {
         if (data && !data.error) {
           this.router.navigate(['user/booking/confirm', this.id])

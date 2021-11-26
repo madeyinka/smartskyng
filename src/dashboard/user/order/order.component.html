@@ -41,8 +41,8 @@
                                 <thead>
                                   <tr>
                                       <th scope="col">ID</th>
-                                      <th scope="col">Invoice ID</th>
-                                      <th scope="col">Quote ID</th>
+                                      <th scope="col">Invoice</th>
+                                      <th scope="col">Item</th>
                                       <th scope="col">Method</th>
                                       <th scope="col">Status</th>
                                       <th scope="col">Date</th>
@@ -52,8 +52,10 @@
                                   <tr *ngFor="let order of orders">
                                       <td scope="row">{{order.uuid}}</td>
                                       <td>{{order.invoice}}</td>
-                                      <td>{{order.quote}}</td>
-                                      <td>{{order.method}}</td>
+                                      <td>{{order.item}}</td>
+                                      <td *ngIf="order.method == 'dropoff'">Drop off</td>
+                                      <td *ngIf="order.method == 'card'">Debit card</td>
+                                      <td *ngIf="order.method == 'transfer'">Bank Transfer</td>
                                       <td *ngIf="order.status == 'pending'"><span class="badge badge-warning text-white py-1 px-2">Pending</span></td>
                                       <td *ngIf="order.status == 'complete'"><span class="badge badge-success text-white py-1 px-2">Complete</span></td>
                                       <td>{{order.createdAt | date:'mediumDate'}}</td>
