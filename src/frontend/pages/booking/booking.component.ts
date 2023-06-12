@@ -188,7 +188,6 @@ export class BookingComponent implements OnInit {
 
   bookingData() {
     return this.booking = {
-      // id: uuidv4(),
       origin: this.f.origin.value,
       destination: this.f.destination.value,
       service_type: this.f.service_type.value,

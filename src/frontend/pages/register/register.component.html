@@ -15,33 +15,33 @@
               <div class="modal-body">
                 <div class="section-tab section-tab-3 pt-1 pb-4">
                   <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#user" [ngClass]="{ 'active':type==='individual'}" data-toggle="tab"  role="tab" (click)="userType('individual')">
                             Personal
                         </a>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a class="nav-link" [ngClass]="{ 'active':type==='organisation'}" data-toggle="tab" href="#organisation" role="tab" (click)="userType('organisation')" >
                             Company
                         </a>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a class="nav-link" [ngClass]="{ 'active':type==='agent'}" data-toggle="tab" href="#agent" role="tab" (click)="userType('agent')" >
                             Agent
                         </a>
-                    </li>
+                    </li> -->
                   </ul>
                 </div><!--End Section Tab-->
                 <div class="tab-content margin-bottom-40px" id="myTabcontent">
                   <div class="tab-pane fade" [ngClass]="{ 'active show':type==='individual'}" role="tabpanel" >
                     <app-user></app-user>
                   </div>
-                  <div class="tab-pane fade" [ngClass]="{ 'active show':type==='organisation'}" role="tabpanel" >
+                  <!-- <div class="tab-pane fade" [ngClass]="{ 'active show':type==='organisation'}" role="tabpanel" >
                     <app-company></app-company>
                   </div>
                   <div class="tab-pane fade" [ngClass]="{ 'active show':type==='agent'}" role="tabpanel" >
                     <app-agent></app-agent>
-                  </div>
+                  </div> -->
                 </div><!--End Tab Content-->
               </div>
           </div>

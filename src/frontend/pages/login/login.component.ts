@@ -81,7 +81,8 @@ export class LoginComponent implements OnInit {
           this.http.get('auth/usercontext').subscribe((user) => {
             localStorage.setItem('id', user.response._id)
             if (user.response.type != "admin") {
-              this.router.navigate(['user/bookings'])
+              location.href = '/main/index'
+              //this.router.navigate(['user/bookings'])
             } else {
               this.router.navigate(['admin/dashboard'])
             }

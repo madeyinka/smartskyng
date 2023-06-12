@@ -240,6 +240,7 @@ export class BookingComponent implements OnInit {
     } else {
       this.http.post('booking/create', this.bookingData()).subscribe(
         (data) => {
+          console.log(data)
           if (data && !data.error) {
             this.router.navigate(['user/booking/summary', data.response._id])
           }
